@@ -1,18 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
-struct insert{
+struct sort{
     int data;
-    struct insert *next;
-}insert;
-struct insert *head,*tail,*nn,*temp1,*temp2;
+    struct sort *next;
+}sort;
+struct sort *head,*tail,*nn,*temp1,*temp2;
 int main(){
-    int n,item;
-    printf("\nEnter the no.of data's: ");
+    int n,item,swap;
+    printf("\nEnter the no.of items: ");
     scanf("%d",&n);
-    nn=(struct insert *)malloc(sizeof(struct insert));
+    nn=(struct sort *)malloc(sizeof(struct sort));
     nn->data;nn->next;head=nn;tail=nn;
-    printf("\nEnter the %d data's:\n",n);
+    printf("\nEnter the %d data's\n",n);
     for(int i=0;i<n;++i){
         scanf("%d",&item);
         if(i==0){
@@ -24,14 +24,14 @@ int main(){
             tail->next=NULL;
         }
         else{
-            nn=(struct insert *)malloc(sizeof(struct insert));
+            nn=(struct sort *)malloc(sizeof(struct sort));
             nn->data=item;
             nn->next=NULL;
             tail->next=nn;
             tail=nn;
         }
     }
-    printf("\nDisplaying the values before sorting:\n");
+    printf("\nDisplaying the data's before sorting: \n");
     temp1=head;
     while(temp1!=NULL){
         printf("%d\t",temp1->data);
@@ -40,17 +40,17 @@ int main(){
     temp1=head;
     while(temp1!=NULL){
         temp2=temp1->next;
-        while(temp2!=NULL){
+        while(temp2!=NULL&&temp1!=NULL){
             if(temp1->data>temp2->data){
-                item=temp1->data;
+                swap=temp1->data;
                 temp1->data=temp2->data;
-                temp2->data=item;
+                temp2->data=swap;
             }
             temp2=temp2->next;
         }
         temp1=temp1->next;
     }
-    printf("\nAfter applying sorting:\n");
+    printf("\nData's after sorting;\n");
     temp1=head;
     while(temp1!=NULL){
         printf("%d\t",temp1->data);
